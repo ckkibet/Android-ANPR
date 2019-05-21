@@ -1,20 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "/home/sebestian/an/number plate rec 5/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-v24/values-v24.xml",
+            "outputFile": "/home/Babaliam/NPR-5/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-v24/values-v24.xml",
             "map": [
                 {
-                    "source": "/home/sebestian/.gradle/caches/transforms-2/files-2.1/0db58834240af2cd3ae5f6a244deed6e/res/values-v24/values-v24.xml",
-                    "from": {
-                        "startLines": "2,3",
-                        "startColumns": "4,4",
-                        "startOffsets": "55,212",
-                        "endColumns": "156,134",
-                        "endOffsets": "207,342"
-                    }
-                },
-                {
-                    "source": "/home/sebestian/.gradle/caches/transforms-2/files-2.1/cdc18bbdac60e691c31c7fdb2ba76e8d/res/values-v24/values-v24.xml",
+                    "source": "/home/Babaliam/.gradle/caches/transforms-2/files-2.1/91b6d6e27e057f86bc361ea5f6737c4d/res/values-v24/values-v24.xml",
                     "from": {
                         "startLines": "2,3,4,5",
                         "startColumns": "4,4,4,4",
@@ -28,6 +18,16 @@
                         "startOffsets": "347,413,474,540",
                         "endColumns": "65,60,65,66",
                         "endOffsets": "408,469,535,602"
+                    }
+                },
+                {
+                    "source": "/home/Babaliam/.gradle/caches/transforms-2/files-2.1/7e616703fd5d2d8e99a0e75807d0a998/res/values-v24/values-v24.xml",
+                    "from": {
+                        "startLines": "2,3",
+                        "startColumns": "4,4",
+                        "startOffsets": "55,212",
+                        "endColumns": "156,134",
+                        "endOffsets": "207,342"
                     }
                 }
             ]

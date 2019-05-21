@@ -58,6 +58,7 @@ public class OcrDetectorProcessor implements Detector.Processor<TextBlock> {
         }
     }
 
+
     /**
      * Frees the resources associated with this detection processor.
      */
@@ -66,7 +67,7 @@ public class OcrDetectorProcessor implements Detector.Processor<TextBlock> {
         mGraphicOverlay.clear();
     }
 
-    public void saveContext(Context con){
+    public void saveContext(Context con)    {
         context = con;
     }
 }

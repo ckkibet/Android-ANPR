@@ -1,4 +1,0 @@
-#Mon Apr 22 11:06:52 EAT 2019
-base.0=/home/sebestian/an/number plate rec 5/app/build/intermediates/transforms/dexMerger/debug/0
-path.0=classes.dex
-renamed.0=classes.dex

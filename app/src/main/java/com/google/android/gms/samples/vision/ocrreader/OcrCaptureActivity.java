@@ -39,6 +39,9 @@ import java.io.IOException;
  * size, and contents of each TextBlock.
  */
 public final class OcrCaptureActivity extends AppCompatActivity {
+
+    private static OcrCaptureActivity instance;
+
     private static final String TAG = "OcrCaptureActivity";
     Context context;
     // Intent request code to handle updating play services if needed.
@@ -65,6 +68,7 @@ public final class OcrCaptureActivity extends AppCompatActivity {
      */
     @Override
     public void onCreate(Bundle bundle) {
+        instance = this;
         super.onCreate(bundle);
         setContentView(R.layout.ocr_capture);
 
@@ -211,11 +215,15 @@ public final class OcrCaptureActivity extends AppCompatActivity {
         startCameraSource();
     }
 
+    public static OcrCaptureActivity getInstance(){
+        return instance;
+    }
+
     /**
      * Stops the camera.
      */
     @Override
-    protected void onPause() {
+    public void onPause() {
         super.onPause();
         if (mPreview != null) {
             mPreview.stop();
@@ -234,22 +242,22 @@ public final class OcrCaptureActivity extends AppCompatActivity {
         }
     }
 
-    /**
-     * Callback for the result from requesting permissions. This method
-     * is invoked for every call on {@link #requestPermissions(String[], int)}.
-     * <p>
-     * <strong>Note:</strong> It is possible that the permissions request interaction
-     * with the user is interrupted. In this case you will receive empty permissions
-     * and results arrays which should be treated as a cancellation.
-     * </p>
-     *
-     * @param requestCode  The request code passed in {@link #requestPermissions(String[], int)}.
-     * @param permissions  The requested permissions. Never null.
-     * @param grantResults The grant results for the corresponding permissions
-     *                     which is either {@link PackageManager#PERMISSION_GRANTED}
-     *                     or {@link PackageManager#PERMISSION_DENIED}. Never null.
-     * @see #requestPermissions(String[], int)
-     */
+//    /**
+//     * Callback for the result from requesting permissions. This method
+//     * is invoked for every call on {@link #requestPermissions(String[], int)}.
+//     * <p>
+//     * <strong>Note:</strong> It is possible that the permissions request interaction
+//     * with the user is interrupted. In this case you will receive empty permissions
+//     * and results arrays which should be treated as a cancellation.
+//     * </p>
+//     *
+//     * @param requestCode  The request code passed in {@link #requestPermissions(String[], int)}.
+//     * @param permissions  The requested permissions. Never null.
+//     * @param grantResults The grant results for the corresponding permissions
+//     *                     which is either {@link PackageManager#PERMISSION_GRANTED}
+//     *                     or {@link PackageManager#PERMISSION_DENIED}. Never null.
+//     * @see #requestPermissions(String[], int)
+//     */
     @Override
     public void onRequestPermissionsResult(int requestCode,
                                            @NonNull String[] permissions,
@@ -366,4 +374,7 @@ public final class OcrCaptureActivity extends AppCompatActivity {
             }
         }
     }
+
+
+
 }

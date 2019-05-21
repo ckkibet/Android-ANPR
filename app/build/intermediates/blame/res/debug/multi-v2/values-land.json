@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "/home/sebestian/an/number plate rec 5/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-land/values-land.xml",
+            "outputFile": "/home/Babaliam/NPR-5/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-land/values-land.xml",
             "map": [
                 {
-                    "source": "/home/sebestian/.gradle/caches/transforms-2/files-2.1/0db58834240af2cd3ae5f6a244deed6e/res/values-land/values-land.xml",
+                    "source": "/home/Babaliam/.gradle/caches/transforms-2/files-2.1/7e616703fd5d2d8e99a0e75807d0a998/res/values-land/values-land.xml",
                     "from": {
                         "startLines": "2,3,4",
                         "startColumns": "4,4,4",
@@ -14,7 +14,7 @@
                     }
                 },
                 {
-                    "source": "/home/sebestian/.gradle/caches/transforms-2/files-2.1/57b5311867fc2fe87ad41d3f380884a3/res/values-land/values-land.xml",
+                    "source": "/home/Babaliam/.gradle/caches/transforms-2/files-2.1/915c94add9fe979fe0f43c0af6416a6c/res/values-land/values-land.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",

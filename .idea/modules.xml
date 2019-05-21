@@ -2,9 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/NPR-5.iml" filepath="$PROJECT_DIR$/NPR-5.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/jaunt1.3.1/jaunt1.3.1.iml" filepath="$PROJECT_DIR$/jaunt1.3.1/jaunt1.3.1.iml" />
-      <module fileurl="file://$PROJECT_DIR$/number plate rec 5.iml" filepath="$PROJECT_DIR$/number plate rec 5.iml" />
     </modules>
   </component>
 </project>

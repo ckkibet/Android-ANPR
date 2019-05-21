@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "/home/sebestian/an/number plate rec 5/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-v16/values-v16.xml",
+            "outputFile": "/home/Babaliam/NPR-5/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-v16/values-v16.xml",
             "map": [
                 {
-                    "source": "/home/sebestian/.gradle/caches/transforms-2/files-2.1/8366e7738d62ee4e7d858b372acc91ad/res/values-v16/values-v16.xml",
+                    "source": "/home/Babaliam/.gradle/caches/transforms-2/files-2.1/ecd7493f780329444545a5695b085420/res/values-v16/values-v16.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",
@@ -14,7 +14,7 @@
                     }
                 },
                 {
-                    "source": "/home/sebestian/.gradle/caches/transforms-2/files-2.1/0db58834240af2cd3ae5f6a244deed6e/res/values-v16/values-v16.xml",
+                    "source": "/home/Babaliam/.gradle/caches/transforms-2/files-2.1/7e616703fd5d2d8e99a0e75807d0a998/res/values-v16/values-v16.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",

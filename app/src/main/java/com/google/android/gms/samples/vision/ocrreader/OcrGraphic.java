@@ -14,18 +14,29 @@
  * limitations under the License.
  */
 package com.google.android.gms.samples.vision.ocrreader;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
+import android.hardware.Camera;
 
+import com.google.android.gms.common.internal.safeparcel.SafeParcelable;
+import com.google.android.gms.samples.vision.ocrreader.ui.camera.CameraSource;
 import com.google.android.gms.samples.vision.ocrreader.ui.camera.GraphicOverlay;
 import com.google.android.gms.vision.text.TextBlock;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import static android.support.v4.content.ContextCompat.startActivity;
+
 /**
  * Graphic instance for rendering TextBlock position, size, and ID within an associated graphic
  * overlay view.
@@ -62,9 +73,10 @@ class OcrGraphic extends GraphicOverlay.Graphic {
         postInvalidate();
     }
 
-    public void saveContext(Context con){
+    public void saveContext(Context con) {
         context = con;
     }
+
     /**
      * Draws the text block annotations for position, size, and raw value on the supplied canvas.
      */
@@ -104,9 +116,9 @@ class OcrGraphic extends GraphicOverlay.Graphic {
         if (matcher.matches()) { //print if valid
             canvas.drawText(text, rect.centerX(), rect.bottom, sTextPaint); //draw on screen
 
-            myIntent = new Intent(context, Result.class);
-            myIntent.putExtra("result", text); //Optional parameters
-            context.startActivity(myIntent);
+//            myIntent.putExtra("result", text); //Optional parameters
+//            context.startActivity(myIntent);
+            Displaytext();
             //setting up the intent and passing data from this Ocr activity to Result Activity
 
             /*
@@ -117,4 +129,11 @@ class OcrGraphic extends GraphicOverlay.Graphic {
 
         }
     }
+
+    public void Displaytext() {
+        Intent intent = new Intent(context, Result.class);
+        context.startActivity(intent);
+
+    }
 }
+
