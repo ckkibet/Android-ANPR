@@ -41,7 +41,7 @@ import static android.support.v4.content.ContextCompat.startActivity;
  * Graphic instance for rendering TextBlock position, size, and ID within an associated graphic
  * overlay view.
  */
-class OcrGraphic extends GraphicOverlay.Graphic {
+public class OcrGraphic extends GraphicOverlay.Graphic {
 
     private static final int TEXT_COLOR = Color.WHITE;
 
@@ -115,17 +115,24 @@ class OcrGraphic extends GraphicOverlay.Graphic {
         matcher = number.matcher(text);
         if (matcher.matches()) { //print if valid
             canvas.drawText(text, rect.centerX(), rect.bottom, sTextPaint); //draw on screen
+            Displaytext();
+            /**
+             * This displayText function is implemented in the function below that triggers the popup to be
+             * displayed and number plate
+             */
 
 //            myIntent.putExtra("result", text); //Optional parameters
 //            context.startActivity(myIntent);
-            Displaytext();
             //setting up the intent and passing data from this Ocr activity to Result Activity
-
             /*
             NOTE:   After a long time searching the web about the problem, I think the problem is with intent because this file
                     is NOT an Activity file, the activity file is OcrCaptureActivity. There's a possibility that this might be a
                     problem. Also, you may need to check the .xml files, I had a hard time with those.
              */
+
+            Intent myIntent = new Intent(context,Result.class);
+            myIntent.putExtra("results",text);
+            context.startActivity(myIntent);
 
         }
     }
@@ -133,7 +140,5 @@ class OcrGraphic extends GraphicOverlay.Graphic {
     public void Displaytext() {
         Intent intent = new Intent(context, Result.class);
         context.startActivity(intent);
-
     }
 }
-

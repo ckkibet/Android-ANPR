@@ -43,6 +43,8 @@
                 <category android:name="android.intent.category.INFO" />
             </intent-filter>
         </activity>
+
+
     </application>
 
 </manifest>
