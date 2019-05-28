@@ -95,7 +95,7 @@ public class OcrGraphic extends GraphicOverlay.Graphic {
         canvas.drawRect(rect, sRectPaint);
 
         //validation setting
-        String REGEX = "^[a-zA-z]{1,4}\\s*[-]*[0-9]{0,2}\\s*[-]*[0-9]{3,4}$"; //regular expression
+        String REGEX = "^[a-zA-z-Q-q]{1,4}\\s*[-]*[0-9]{0,2}\\s*[-]*[0-9]{3,4}$"; //regular expression
         Pattern number; //a pattern of compiled regex
         Matcher matcher; //helps in matching the regex
         text = mText.getValue();
@@ -103,7 +103,7 @@ public class OcrGraphic extends GraphicOverlay.Graphic {
         //fixing
         Matcher m = Pattern.compile("[-][0-9]{2}[-]|[-]|[\n]").matcher(text);
         text = m.replaceAll(" ");
-        m = Pattern.compile("ICT|Islamabad|Sindh|Punjab|PK|Govt of Sindh|Ict-Islamabad|ICT-Islamabad").matcher(text);
+        m = Pattern.compile("ICT|Islamabad|Sindh|Punjab|PK|Govt of Sindh|Ict-Islamabad|ICT-Islamabad|KCQ").matcher(text);
         text = m.replaceAll("");
 
         //final touch

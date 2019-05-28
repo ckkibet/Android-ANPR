@@ -19,8 +19,10 @@ gen-external-apklibs
 
 # Gradle
 .gradle
+.idea/*
 build
 out
+
 
 # Maven
 target
