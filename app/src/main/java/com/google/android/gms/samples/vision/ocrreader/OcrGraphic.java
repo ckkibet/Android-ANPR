@@ -103,7 +103,7 @@ public class OcrGraphic extends GraphicOverlay.Graphic {
         //fixing
         Matcher m = Pattern.compile("[-][0-9]{2}[-]|[-]|[\n]").matcher(text);
         text = m.replaceAll(" ");
-        m = Pattern.compile("ICT|Islamabad|Sindh|Punjab|PK|Govt of Sindh|Ict-Islamabad|ICT-Islamabad|KCQ").matcher(text);
+        m = Pattern.compile("ICT|Islamabad|Sindh|Punjab|PK|Govt of Sindh|Ict-Islamabad|ICT-Islamabad|KC|9|BA").matcher(text);
         text = m.replaceAll("");
 
         //final touch
