@@ -5,7 +5,7 @@ lint.xml
 app/build/*
 
 # IntelliJ IDEA
-.idea
+.idea/*
 *.iml
 *.ipr
 *.iws
