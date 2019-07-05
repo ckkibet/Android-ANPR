@@ -24,10 +24,8 @@ public class Result extends AppCompatActivity implements MyRecyclerViewAdapter.I
     String value;
     String text, formattedDate;
     MyRecyclerViewAdapter adapter;
-    EditText input;
     RecyclerView recyclerView;
-    ArrayList<String> animalNames;
-
+    private EditText input;
 
 
 
@@ -36,7 +34,7 @@ public class Result extends AppCompatActivity implements MyRecyclerViewAdapter.I
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_result);
 
-        Intent intent = getIntent();
+        final Intent intent = getIntent();
         text = intent.getStringExtra("results");
 
 
@@ -50,13 +48,18 @@ public class Result extends AppCompatActivity implements MyRecyclerViewAdapter.I
                 .setMessage(text
                         +"\n"
                         +"On: "
-                        +formattedDate)
+                        +formattedDate
+                        +"\n"
+                        +"\n"
+                        +"Enter Driver's Name Below:")
                 .setPositiveButton("Proceed", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        GetDriverName();
+                        displayResults();
                     }
                 });
+        EditText input = new EditText(this);
+        a_builder.setView(input);
 
         a_builder.setNegativeButton("Scan Again", new DialogInterface.OnClickListener() {
             @Override
@@ -71,18 +74,31 @@ public class Result extends AppCompatActivity implements MyRecyclerViewAdapter.I
         alert.setTitle("Scanned Plate:");
         alert.show();
         alert.setCancelable(false);
+    }
 
-
+    private void displayResults() {
+        ArrayList<String> animalNames = new ArrayList<>();
         adapter = new MyRecyclerViewAdapter(this, animalNames);
         adapter.setClickListener(this);
+
+        String driverName;
+        driverName = input.getText().toString();
+
 
 
 
         // data to populate the RecyclerView with
-        animalNames.add("!st");
-        int insertIndex = 0;
-        animalNames.add(insertIndex, text +"\n" +"On: " +formattedDate +"\n" +"Driven By: " +input);
-        adapter.notifyItemRangeChanged(0, animalNames.size());
+//        animalNames.add("!st");
+//        int insertIndex = 0;
+//        animalNames.add(insertIndex, text +"\n" +"On: " +formattedDate +"\n" +"Driven By: "
+//                +driverName);
+//        adapter.notifyItemRangeChanged(0, animalNames.size());
+
+        animalNames.add(
+                text +"\n"
+                +formattedDate +"\n"
+                +"Driven By: " +driverName
+        );
 
         // set up the RecyclerView
         recyclerView = findViewById(R.id.rvAnimals);
@@ -94,42 +110,6 @@ public class Result extends AppCompatActivity implements MyRecyclerViewAdapter.I
         DividerItemDecoration itemDecoration = new DividerItemDecoration(this,
                 DividerItemDecoration.VERTICAL);
         recyclerView.addItemDecoration(itemDecoration);
-
-
-    }
-
-    private void GetDriverName() {
-        AlertDialog.Builder alert = new AlertDialog.Builder(this);
-        alert.setTitle("Driver Details");
-        alert.setMessage("Name:");
-
-        input = new EditText(this);
-        alert.setView(input);
-
-        alert.setPositiveButton("Save Record", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.dismiss();
-            }
-        });
-
-        final AlertDialog alertDialog = alert.create();
-        alertDialog.setOnShowListener(new DialogInterface.OnShowListener() {
-            @Override
-            public void onShow(DialogInterface dialog) {
-                if(input.getText().toString().trim().equals("")){
-                    Button button = alertDialog.getButton(AlertDialog.BUTTON_POSITIVE);
-                    button.setEnabled(false);
-//                    if (button != null){
-//                        button.setEnabled(false);
-//                    }
-                }
-            }
-        });
-
-
-        alert.show();
-        alert.setCancelable(false);
     }
 
 

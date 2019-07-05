@@ -394,9 +394,7 @@ public final class OcrCaptureActivity extends AppCompatActivity {
             public void run() {
                 doubleBackToExitPressedOnce=false;
             }
-        }, 2000);
+        },
+                2000);
     }
-
-
-
 }
