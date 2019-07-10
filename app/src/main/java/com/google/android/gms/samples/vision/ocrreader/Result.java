@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
@@ -17,15 +18,23 @@ import android.widget.Toast;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 import java.util.Locale;
+import java.util.Objects;
 
 public class Result extends AppCompatActivity implements MyRecyclerViewAdapter.ItemClickListener{
     Intent intent;
     String value;
-    String text, formattedDate;
+    String text, formattedDate, formattedTime;
     MyRecyclerViewAdapter adapter;
     RecyclerView recyclerView;
     private EditText input;
+    List<String> animalNames;
+    private final String KEY_RECYCLER_STATE = "recycler_state";
+    private static Bundle mBundleRecyclerViewState;
+
+
+
 
 
 
@@ -33,15 +42,32 @@ public class Result extends AppCompatActivity implements MyRecyclerViewAdapter.I
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_result);
+        recyclerView = findViewById(R.id.rvAnimals);
 
         final Intent intent = getIntent();
         text = intent.getStringExtra("results");
 
+        animalNames = new ArrayList<>();
+        animalNames.add("The list below shows a list of all vehicles scanned");
+
+        RecyclerView recyclerView = findViewById(R.id.rvAnimals);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        adapter = new MyRecyclerViewAdapter(this, animalNames);
+        adapter.setClickListener(this);
+        recyclerView.setAdapter(adapter);
+
+        DividerItemDecoration itemDecoration = new DividerItemDecoration(this,
+                DividerItemDecoration.VERTICAL);
+        recyclerView.addItemDecoration(itemDecoration);
+
+
 
         Calendar c = Calendar.getInstance();
         System.out.println("Current time => "+c.getTime());
-        SimpleDateFormat df = new SimpleDateFormat("dd/MMMM/yyyy HH:mm:ss", Locale.getDefault());
+        SimpleDateFormat df = new SimpleDateFormat("dd/MMMM/yyyy", Locale.getDefault());
+        SimpleDateFormat dd = new SimpleDateFormat("HH:mm:ss", Locale.getDefault());
         formattedDate = df.format(c.getTime());
+        formattedTime = dd.format(c.getTime());
 
         AlertDialog.Builder a_builder = new AlertDialog.Builder(this);
         a_builder
@@ -50,6 +76,8 @@ public class Result extends AppCompatActivity implements MyRecyclerViewAdapter.I
                         +"On: "
                         +formattedDate
                         +"\n"
+                        +"Time: "
+                        +formattedTime
                         +"\n"
                         +"Enter Driver's Name Below:")
                 .setPositiveButton("Proceed", new DialogInterface.OnClickListener() {
@@ -76,40 +104,18 @@ public class Result extends AppCompatActivity implements MyRecyclerViewAdapter.I
         alert.setCancelable(false);
     }
 
-    private void displayResults() {
-        ArrayList<String> animalNames = new ArrayList<>();
-        adapter = new MyRecyclerViewAdapter(this, animalNames);
-        adapter.setClickListener(this);
-
-        String driverName;
-        driverName = input.getText().toString();
-
-
-
-
-        // data to populate the RecyclerView with
-//        animalNames.add("!st");
-//        int insertIndex = 0;
-//        animalNames.add(insertIndex, text +"\n" +"On: " +formattedDate +"\n" +"Driven By: "
-//                +driverName);
-//        adapter.notifyItemRangeChanged(0, animalNames.size());
-
-        animalNames.add(
-                text +"\n"
-                +formattedDate +"\n"
-                +"Driven By: " +driverName
-        );
-
-        // set up the RecyclerView
-        recyclerView = findViewById(R.id.rvAnimals);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-
-        recyclerView.setAdapter(adapter);
-        recyclerView.invalidate();
-
-        DividerItemDecoration itemDecoration = new DividerItemDecoration(this,
-                DividerItemDecoration.VERTICAL);
-        recyclerView.addItemDecoration(itemDecoration);
+    public void displayResults() {
+        String string = text
+                +"\n"
+                +"On: "
+                +formattedDate
+                +"\n"
+                +"Time: "
+                +formattedTime
+                +"\n";
+        int insertIndex = 1;
+        animalNames.add(insertIndex, string);
+        adapter.notifyDataSetChanged();
     }
 
 
@@ -120,7 +126,28 @@ public class Result extends AppCompatActivity implements MyRecyclerViewAdapter.I
 
     public void onBackPressed() {
         Intent intent = new Intent(this, OcrCaptureActivity.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
+    }
+    @Override
+    protected void onPause()
+    {
+        super.onPause();
+
+        // save RecyclerView state
+        mBundleRecyclerViewState = new Bundle();
+        Parcelable listState = Objects.requireNonNull(recyclerView.getLayoutManager()).onSaveInstanceState();
+        mBundleRecyclerViewState.putParcelable(KEY_RECYCLER_STATE, listState);
+    }
+
+    @Override
+    protected void onResume()
+    {
+        super.onResume();
+
+        // restore RecyclerView state
+        if (mBundleRecyclerViewState != null) {
+            Parcelable listState = mBundleRecyclerViewState.getParcelable(KEY_RECYCLER_STATE);
+            Objects.requireNonNull(recyclerView.getLayoutManager()).onRestoreInstanceState(listState);
+        }
     }
 }
