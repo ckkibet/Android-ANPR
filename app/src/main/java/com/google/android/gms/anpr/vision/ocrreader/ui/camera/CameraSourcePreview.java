@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.google.android.gms.samples.vision.ocrreader.ui.camera;
+package com.google.android.gms.anpr.vision.ocrreader.ui.camera;
 
 import android.Manifest;
 import android.content.Context;

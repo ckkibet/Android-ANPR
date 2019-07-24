@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.google.android.gms.samples.vision.ocrreader.ui.camera;
+package com.google.android.gms.anpr.vision.ocrreader.ui.camera;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
@@ -736,11 +736,6 @@ public class CameraSource {
         }
     }
 
-    /**
-     * Opens the camera and applies the user settings.
-     *
-     * @throws RuntimeException if the method fails
-     */
     @SuppressLint("InlinedApi")
     private Camera createCamera() {
         int requestedCameraId = getIdForRequestedCamera(mFacing);
@@ -897,15 +892,7 @@ public class CameraSource {
         }
     }
 
-    /**
-     * Generates a list of acceptable preview sizes.  Preview sizes are not acceptable if there is
-     * not a corresponding picture size of the same aspect ratio.  If there is a corresponding
-     * picture size of the same aspect ratio, the picture size is paired up with the preview size.
-     * <p/>
-     * This is necessary because even if we don't use still pictures, the still picture size must be
-     * set to a size that is the same aspect ratio as the preview size we choose.  Otherwise, the
-     * preview images may be distorted on some devices.
-     */
+
     private static List<SizePair> generateValidPreviewSizeList(Camera camera) {
         Camera.Parameters parameters = camera.getParameters();
         List<android.hardware.Camera.Size> supportedPreviewSizes =

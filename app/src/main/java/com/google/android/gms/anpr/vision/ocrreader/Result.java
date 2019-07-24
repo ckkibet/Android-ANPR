@@ -1,4 +1,4 @@
-package com.google.android.gms.samples.vision.ocrreader;
+package com.google.android.gms.anpr.vision.ocrreader;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -9,9 +9,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.text.TextUtils;
+import android.text.Editable;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -28,14 +27,9 @@ public class Result extends AppCompatActivity implements MyRecyclerViewAdapter.I
     String text, formattedDate, formattedTime;
     MyRecyclerViewAdapter adapter;
     RecyclerView recyclerView;
-    private EditText input;
     List<String> animalNames;
     private final String KEY_RECYCLER_STATE = "recycler_state";
     private static Bundle mBundleRecyclerViewState;
-
-
-
-
 
 
     @Override
@@ -48,8 +42,6 @@ public class Result extends AppCompatActivity implements MyRecyclerViewAdapter.I
         text = intent.getStringExtra("results");
 
         animalNames = new ArrayList<>();
-        animalNames.add("The list below shows a list of all vehicles scanned");
-
         RecyclerView recyclerView = findViewById(R.id.rvAnimals);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         adapter = new MyRecyclerViewAdapter(this, animalNames);
@@ -60,14 +52,14 @@ public class Result extends AppCompatActivity implements MyRecyclerViewAdapter.I
                 DividerItemDecoration.VERTICAL);
         recyclerView.addItemDecoration(itemDecoration);
 
-
-
         Calendar c = Calendar.getInstance();
         System.out.println("Current time => "+c.getTime());
         SimpleDateFormat df = new SimpleDateFormat("dd/MMMM/yyyy", Locale.getDefault());
         SimpleDateFormat dd = new SimpleDateFormat("HH:mm:ss", Locale.getDefault());
         formattedDate = df.format(c.getTime());
         formattedTime = dd.format(c.getTime());
+
+        final EditText input = new EditText(this);
 
         AlertDialog.Builder a_builder = new AlertDialog.Builder(this);
         a_builder
@@ -79,14 +71,34 @@ public class Result extends AppCompatActivity implements MyRecyclerViewAdapter.I
                         +"Time: "
                         +formattedTime
                         +"\n"
-                        +"Enter Driver's Name Below:")
+                        +"Enter Driver's Name Below:"
+                        )
                 .setPositiveButton("Proceed", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        displayResults();
+                        new AlertDialog.Builder(Result.this)
+                                .setMessage("Are you sure this is the correct Name: "+input.getText()+"?")
+                                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        // Save data to db
+                                        Editable driver = input.getText();
+
+                                            displayResults(driver);
+
+                                    }
+                                })
+                                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        dialog.dismiss();
+                                    }
+                                })
+                                .show();
+
                     }
                 });
-        EditText input = new EditText(this);
+
         a_builder.setView(input);
 
         a_builder.setNegativeButton("Scan Again", new DialogInterface.OnClickListener() {
@@ -104,18 +116,27 @@ public class Result extends AppCompatActivity implements MyRecyclerViewAdapter.I
         alert.setCancelable(false);
     }
 
-    public void displayResults() {
-        String string = text
-                +"\n"
-                +"On: "
-                +formattedDate
-                +"\n"
-                +"Time: "
-                +formattedTime
-                +"\n";
-        int insertIndex = 1;
-        animalNames.add(insertIndex, string);
-        adapter.notifyDataSetChanged();
+
+    public void displayResults(Editable driver) {
+
+        String plate = text;
+        String date = formattedDate;
+        String time = formattedTime;
+        String Driver = String.valueOf(driver);
+
+        mydatabase mydatabase = new mydatabase(Result.this);
+        boolean trt = (boolean) mydatabase.insertdata(plate, date, time, Driver);
+        if (trt){
+            Toast.makeText(Result.this, "Data Saved", Toast.LENGTH_SHORT).show();
+
+            Intent intent = new Intent(Result.this, WelcomeScreen.class);
+            startActivity(intent);
+        }
+        else
+        {
+            Toast.makeText(this, "Error saving data", Toast.LENGTH_SHORT).show();
+        }
+
     }
 
 
@@ -125,7 +146,7 @@ public class Result extends AppCompatActivity implements MyRecyclerViewAdapter.I
     }
 
     public void onBackPressed() {
-        Intent intent = new Intent(this, OcrCaptureActivity.class);
+        Intent intent = new Intent(this, WelcomeScreen.class);
         startActivity(intent);
     }
     @Override

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.google.android.gms.samples.vision.ocrreader"
+    package="com.google.android.gms.anpr.vision.ocrreader"
     android:installLocation="auto">
 
     <uses-feature android:name="android.hardware.camera" />
@@ -15,9 +15,12 @@
         android:fullBackupContent="false"
         android:hardwareAccelerated="true"
         android:icon="@drawable/icon"
-        android:label="RoadwayIntel"
+        android:label="KNPR"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat">
+        <activity android:name=".ShowResults"></activity>
+        <activity android:name=".OcrCaptureActivity" />
+
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
@@ -26,25 +29,24 @@
             android:value="ocr" />
 
         <activity
-            android:name=".OcrCaptureActivity"
-            android:label="RoadwayIntel">
+            android:name=".WelcomeScreen"
+            android:label="KNPR">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
-            android:label="@string/title_activity_result"
             android:name=".Result"
+            android:label="@string/title_activity_result"
             android:parentActivityName=".OcrCaptureActivity">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.INFO" />
             </intent-filter>
         </activity>
-
-
     </application>
 
 </manifest>

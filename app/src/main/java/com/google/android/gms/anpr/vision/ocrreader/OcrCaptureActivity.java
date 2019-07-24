@@ -1,4 +1,4 @@
-package com.google.android.gms.samples.vision.ocrreader;
+package com.google.android.gms.anpr.vision.ocrreader;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
@@ -27,18 +27,14 @@ import android.widget.ToggleButton;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
-import com.google.android.gms.samples.vision.ocrreader.ui.camera.CameraSource;
-import com.google.android.gms.samples.vision.ocrreader.ui.camera.CameraSourcePreview;
-import com.google.android.gms.samples.vision.ocrreader.ui.camera.GraphicOverlay;
+import com.google.android.gms.anpr.vision.ocrreader.ui.camera.CameraSource;
+import com.google.android.gms.anpr.vision.ocrreader.ui.camera.CameraSourcePreview;
+import com.google.android.gms.anpr.vision.ocrreader.ui.camera.GraphicOverlay;
 import com.google.android.gms.vision.text.TextRecognizer;
 
 import java.io.IOException;
 
-/**
- * Activity for the Ocr Detecting app.  This app detects text and displays the value with the
- * rear facing camera. During detection overlay graphics are drawn to indicate the position,
- * size, and contents of each TextBlock.
- */
+
 public final class OcrCaptureActivity extends AppCompatActivity {
 
     private static OcrCaptureActivity instance;
@@ -153,7 +149,7 @@ public final class OcrCaptureActivity extends AppCompatActivity {
 
     /**
      * Creates and starts the camera.  Note that this uses a higher resolution in comparison
-     * to other detection examples to enable the ocr detector to detect small text samples
+     * to other detection examples to enable the ocr detector to detect small text anpr
      * at long distances.
      *
      * Suppressing InlinedApi since there is a check that the minimum version is met before using
@@ -173,15 +169,6 @@ public final class OcrCaptureActivity extends AppCompatActivity {
         textRecognizer.setProcessor(ocrDetectorProcessor);
 
         if (!textRecognizer.isOperational()) {
-            // Note: The first time that an app using a Vision API is installed on a
-            // device, GMS will download a native libraries to the device in order to do detection.
-            // Usually this completes before the app is run for the first time.  But if that
-            // download has not yet completed, then the above call will not detect any text,
-            // barcodes, or faces.
-            //
-            // isOperational() can be used to check if the required native libraries are currently
-            // available.  The detectors will automatically become operational once the library
-            // downloads complete on device.
             Log.w(TAG, "Detector dependencies are not yet available.");
 
             // Check for low storage.  If there is low storage, the native library will not be
@@ -231,10 +218,6 @@ public final class OcrCaptureActivity extends AppCompatActivity {
         }
     }
 
-    /**
-     * Releases the resources associated with the camera source, the associated detectors, and the
-     * rest of the processing pipeline.
-     */
     @Override
     protected void onDestroy() {
         super.onDestroy();
@@ -243,22 +226,6 @@ public final class OcrCaptureActivity extends AppCompatActivity {
         }
     }
 
-//    /**
-//     * Callback for the result from requesting permissions. This method
-//     * is invoked for every call on {@link #requestPermissions(String[], int)}.
-//     * <p>
-//     * <strong>Note:</strong> It is possible that the permissions request interaction
-//     * with the user is interrupted. In this case you will receive empty permissions
-//     * and results arrays which should be treated as a cancellation.
-//     * </p>
-//     *
-//     * @param requestCode  The request code passed in {@link #requestPermissions(String[], int)}.
-//     * @param permissions  The requested permissions. Never null.
-//     * @param grantResults The grant results for the corresponding permissions
-//     *                     which is either {@link PackageManager#PERMISSION_GRANTED}
-//     *                     or {@link PackageManager#PERMISSION_DENIED}. Never null.
-//     * @see #requestPermissions(String[], int)
-//     */
     @Override
     public void onRequestPermissionsResult(int requestCode,
                                            @NonNull String[] permissions,

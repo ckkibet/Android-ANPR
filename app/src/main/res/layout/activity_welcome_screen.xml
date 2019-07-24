@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black_overlay"
+    tools:context="com.google.android.gms.anpr.vision.ocrreader.WelcomeScreen">
+
+    <LinearLayout
+        android:id="@+id/l_one"
+        android:layout_width="match_parent"
+        android:layout_marginTop="30dp"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Welcome to KNPR"
+            android:textAlignment="center"
+            android:textSize="30dp"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/l_two"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_below="@+id/l_one">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Choose any option below"
+            android:textAlignment="center"
+            android:textStyle="italic"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/l_three"
+        android:layout_below="@+id/l_two"
+        android:layout_width="match_parent"
+        android:layout_marginTop="20dp"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/scan_plate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Scan Number Plate"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/l_four"
+        android:layout_below="@+id/l_three"
+        android:layout_width="match_parent"
+        android:layout_marginTop="20dp"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/History"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="History"/>
+
+    </LinearLayout>
+
+
+</RelativeLayout>
