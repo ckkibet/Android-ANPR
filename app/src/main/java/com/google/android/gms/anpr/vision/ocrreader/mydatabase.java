@@ -5,7 +5,6 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -40,9 +39,6 @@ public class mydatabase extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS "+TABLE_NAME);
 
     }
-
-
-
 
     public Object insertdata(String plate, String date, String time, String driver) {
 
@@ -86,7 +82,6 @@ public class mydatabase extends SQLiteOpenHelper {
             dataModel.setTime(time);
             dataModel.setDriver(driver);
             stringBuffer.append(dataModel);
-            // stringBuffer.append(dataModel);
             data.add(dataModel);
         }
 
