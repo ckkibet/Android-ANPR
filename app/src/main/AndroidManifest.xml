@@ -33,17 +33,15 @@
             android:label="KNPR">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
             android:name=".Result"
-            android:label="@string/title_activity_result"
-            android:parentActivityName=".OcrCaptureActivity">
+            android:label="@string/title_activity_result">
+<!--            android:parentActivityName=".WelcomeScreen"-->
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
-
                 <category android:name="android.intent.category.INFO" />
             </intent-filter>
         </activity>

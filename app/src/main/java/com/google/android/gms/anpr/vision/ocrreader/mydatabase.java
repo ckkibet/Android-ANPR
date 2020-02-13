@@ -5,7 +5,6 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.text.Editable;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -71,7 +70,7 @@ public class mydatabase extends SQLiteOpenHelper {
         // DataModel dataModel = new DataModel();
         List<DataModel> data=new ArrayList<>();
         SQLiteDatabase db = this.getWritableDatabase();
-        Cursor cursor = db.rawQuery("select * from "+TABLE_NAME+" ;",null);
+        Cursor cursor = db.rawQuery("select * from "+TABLE_NAME+" order by "+Time+" desc;",null);
         StringBuffer stringBuffer = new StringBuffer();
         DataModel dataModel = null;
         while (cursor.moveToNext()) {

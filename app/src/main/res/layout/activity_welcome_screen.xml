@@ -31,7 +31,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Choose any option below"
+            android:text="Choose an option below"
             android:textAlignment="center"
             android:textStyle="italic"/>
 

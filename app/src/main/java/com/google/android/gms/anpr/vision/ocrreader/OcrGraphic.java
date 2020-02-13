@@ -71,7 +71,7 @@ public class OcrGraphic extends GraphicOverlay.Graphic {
         canvas.drawRect(rect, sRectPaint);
 
         //validation setting
-        String REGEX = "^[a-zA-z-Q-q]{1,4}\\s*[-]*[0-9]{0,2}\\s*[-]*[0-9]{3,4}[a-zA-z]{0,4}$"; //regular expression
+        String REGEX = "^[a-zA-z-Q-q]{1,3}\\s*[-]*[0-9]{0,2}\\s*[-]*[0-9]{3,4}[a-zA-z]{0,4}$"; //regular expression
         Pattern number; //a pattern of compiled regex
         Matcher matcher; //helps in matching the regex
         text = mText.getValue();

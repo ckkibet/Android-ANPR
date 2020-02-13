@@ -10,6 +10,7 @@ import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
+import android.text.InputType;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -41,6 +42,7 @@ public class Result extends AppCompatActivity implements MyRecyclerViewAdapter.I
         final Intent intent = getIntent();
         text = intent.getStringExtra("results");
 
+
         animalNames = new ArrayList<>();
         RecyclerView recyclerView = findViewById(R.id.rvAnimals);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -54,17 +56,18 @@ public class Result extends AppCompatActivity implements MyRecyclerViewAdapter.I
 
         Calendar c = Calendar.getInstance();
         System.out.println("Current time => "+c.getTime());
-        SimpleDateFormat df = new SimpleDateFormat("dd/MMMM/yyyy", Locale.getDefault());
+        SimpleDateFormat df = new SimpleDateFormat("MMMM dd, yyyy", Locale.getDefault());
         SimpleDateFormat dd = new SimpleDateFormat("HH:mm:ss", Locale.getDefault());
         formattedDate = df.format(c.getTime());
         formattedTime = dd.format(c.getTime());
 
         final EditText input = new EditText(this);
+        input.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_FLAG_CAP_SENTENCES);
 
         AlertDialog.Builder a_builder = new AlertDialog.Builder(this);
         a_builder
-                .setMessage(text
-                        +"\n"
+                .setMessage(
+                        "\n"
                         +"On: "
                         +formattedDate
                         +"\n"
@@ -76,25 +79,6 @@ public class Result extends AppCompatActivity implements MyRecyclerViewAdapter.I
                 .setPositiveButton("Proceed", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        new AlertDialog.Builder(Result.this)
-                                .setMessage("Are you sure this is the correct Name: "+input.getText()+"?")
-                                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                                    @Override
-                                    public void onClick(DialogInterface dialog, int which) {
-                                        // Save data to db
-                                        Editable driver = input.getText();
-
-                                            displayResults(driver);
-
-                                    }
-                                })
-                                .setNegativeButton("No", new DialogInterface.OnClickListener() {
-                                    @Override
-                                    public void onClick(DialogInterface dialog, int which) {
-                                        dialog.dismiss();
-                                    }
-                                })
-                                .show();
 
                     }
                 });
@@ -111,9 +95,29 @@ public class Result extends AppCompatActivity implements MyRecyclerViewAdapter.I
         });
 
         AlertDialog alert = a_builder.create();
-        alert.setTitle("Scanned Plate:");
+        alert.setTitle("Scanned Plate: "+text);
         alert.show();
         alert.setCancelable(false);
+
+        alert.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                boolean isError = false;
+                String string = input.getText().toString().trim();
+
+                if(string.isEmpty()){
+                    isError = true;
+                    input.setError("Driver's Name Can't be Empty!" );
+                }
+
+                if (!isError){
+                    Editable driver = input.getText();
+                    displayResults(driver);
+                }
+            }
+        });
+
     }
 
 
