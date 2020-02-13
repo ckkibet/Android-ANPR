@@ -24,10 +24,12 @@
         android:fullBackupContent="false"
         android:hardwareAccelerated="true"
         android:icon="@drawable/icon"
-        android:label="RoadwayIntel"
+        android:label="KNPR"
         android:supportsRtl="true"
-        android:testOnly="true"
         android:theme="@style/Theme.AppCompat" >
+        <activity android:name="com.google.android.gms.anpr.vision.ocrreader.ShowResults" />
+        <activity android:name="com.google.android.gms.anpr.vision.ocrreader.OcrCaptureActivity" />
+
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
@@ -36,8 +38,8 @@
             android:value="ocr" />
 
         <activity
-            android:name="com.google.android.gms.samples.vision.ocrreader.OcrCaptureActivity"
-            android:label="RoadwayIntel" >
+            android:name="com.google.android.gms.anpr.vision.ocrreader.WelcomeScreen"
+            android:label="KNPR" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -45,9 +47,9 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.google.android.gms.samples.vision.ocrreader.Result"
+            android:name="com.google.android.gms.anpr.vision.ocrreader.Result"
             android:label="@string/title_activity_result"
-            android:parentActivityName="com.google.android.gms.samples.vision.ocrreader.OcrCaptureActivity" >
+            android:parentActivityName="com.google.android.gms.anpr.vision.ocrreader.OcrCaptureActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
 
