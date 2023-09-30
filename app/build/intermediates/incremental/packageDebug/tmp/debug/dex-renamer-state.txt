@@ -1,4 +1,4 @@
-#Sat Sep 30 08:02:53 EAT 2023
+#Sat Sep 30 09:42:57 EAT 2023
 base.0=D\:\\1 project\\Android-ANPR\\app\\build\\intermediates\\dex\\debug\\mergeExtDexDebug\\classes.dex
 base.1=D\:\\1 project\\Android-ANPR\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\0\\classes.dex
 base.2=D\:\\1 project\\Android-ANPR\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\10\\classes.dex
