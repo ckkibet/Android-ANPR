@@ -2,9 +2,12 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/android-anpr.iml" filepath="$PROJECT_DIR$/android-anpr.iml" />
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/jaunt1.3.1/jaunt1.3.1.iml" filepath="$PROJECT_DIR$/jaunt1.3.1/jaunt1.3.1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Android-ANPR.iml" filepath="$PROJECT_DIR$/.idea/modules/Android-ANPR.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/Android-ANPR.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/Android-ANPR.app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/Android-ANPR.app.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/Android-ANPR.app.androidTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/Android-ANPR.app.main.iml" filepath="$PROJECT_DIR$/.idea/modules/app/Android-ANPR.app.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/Android-ANPR.app.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/Android-ANPR.app.unitTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/jaunt1.3.1/Android-ANPR.jaunt1.3.1.iml" filepath="$PROJECT_DIR$/.idea/modules/jaunt1.3.1/Android-ANPR.jaunt1.3.1.iml" />
     </modules>
   </component>
 </project>

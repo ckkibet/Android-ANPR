@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.google.android.gms.anpr.vision.ocrreader"
     android:installLocation="auto">
 
     <uses-feature android:name="android.hardware.camera" />
 
     <uses-permission android:name="android.permission.CAMERA" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        android:maxSdkVersion="32" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"
+        android:maxSdkVersion="32" />
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
@@ -17,7 +18,8 @@
         android:icon="@drawable/kry"
         android:label="KNPR"
         android:supportsRtl="true"
-        android:theme="@style/Theme.AppCompat">
+        android:theme="@style/Theme.AppCompat"
+        android:dataExtractionRules="@xml/data_extraction_rules">
         <activity android:name=".ShowResults"></activity>
         <activity android:name=".OcrCaptureActivity" />
 
@@ -30,7 +32,8 @@
 
         <activity
             android:name=".WelcomeScreen"
-            android:label="KNPR">
+            android:label="KNPR"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -38,7 +41,8 @@
         </activity>
         <activity
             android:name=".Result"
-            android:label="@string/title_activity_result">
+            android:label="@string/title_activity_result"
+            android:exported="true">
 <!--            android:parentActivityName=".WelcomeScreen"-->
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
