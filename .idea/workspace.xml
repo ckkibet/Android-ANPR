@@ -42,7 +42,7 @@
     <last-search-timestamp>1558467752712</last-search-timestamp>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ce32fceb-9f04-4239-adf4-f3af5586c5d2" name="Default Changelist" comment="" />
+    <list default="true" id="ce32fceb-9f04-4239-adf4-f3af5586c5d2" name="Default Changelist" comment="commit" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -310,7 +310,7 @@
     "RunOnceActivity.cidr.known.project.marker": "true",
     "cidr.known.project.marker": "true",
     "com.android.tools.idea.devicemanager.tab": "Physical",
-    "last_opened_file_path": "D:/2 projects/Android-ANPR"
+    "last_opened_file_path": "D:/1 project/Android-ANPR"
   }
 }]]></component>
   <component name="PsdUISettings">
@@ -404,6 +404,14 @@
       <option name="presentableId" value="Default" />
       <updated>1555886745456</updated>
     </task>
+    <task id="LOCAL-00001" summary="commit">
+      <created>1696050523423</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1696050523423</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TodoView">
@@ -446,6 +454,10 @@
       <window_info anchor="right" id="Palette&#9;" order="4" />
       <window_info anchor="right" id="Preview" order="5" weight="0.32852808" />
     </layout>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="commit" />
+    <option name="LAST_COMMIT_MESSAGE" value="commit" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties">
