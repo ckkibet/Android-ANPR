@@ -69,9 +69,9 @@ public final class OcrCaptureActivity extends AppCompatActivity {
         super.onCreate(bundle);
         setContentView(R.layout.ocr_capture);
 
-        mPreview = (CameraSourcePreview) findViewById(R.id.preview);
-        mGraphicOverlay = (GraphicOverlay<OcrGraphic>) findViewById(R.id.graphicOverlay);
-        flash = (ToggleButton)findViewById(R.id.flash);
+        mPreview = findViewById(R.id.preview);
+        mGraphicOverlay = findViewById(R.id.graphicOverlay);
+        flash = findViewById(R.id.flash);
 
         flash.setOnClickListener(new OnClickListener() {
 
@@ -109,7 +109,7 @@ public final class OcrCaptureActivity extends AppCompatActivity {
 
     /**
      * Handles the requesting of the camera permission.  This includes
-     * showing a "Snackbar" message of why the permission is needed then
+     * showing a "Snack bar" message of why the permission is needed then
      * sending the request.
      */
     private void requestCameraPermission() {
@@ -151,7 +151,7 @@ public final class OcrCaptureActivity extends AppCompatActivity {
      * Creates and starts the camera.  Note that this uses a higher resolution in comparison
      * to other detection examples to enable the ocr detector to detect small text anpr
      * at long distances.
-     *
+     * <p>
      * Suppressing InlinedApi since there is a check that the minimum version is met before using
      * the constant.
      */
@@ -173,8 +173,8 @@ public final class OcrCaptureActivity extends AppCompatActivity {
 
             // Check for low storage.  If there is low storage, the native library will not be
             // downloaded, so detection will not become operational.
-            IntentFilter lowstorageFilter = new IntentFilter(Intent.ACTION_DEVICE_STORAGE_LOW);
-            boolean hasLowStorage = registerReceiver(null, lowstorageFilter) != null;
+            IntentFilter storageFilter = new IntentFilter(Intent.ACTION_DEVICE_STORAGE_LOW);
+            boolean hasLowStorage = registerReceiver(null, storageFilter) != null;
 
             if (hasLowStorage) {
                 Toast.makeText(this, R.string.low_storage_error, Toast.LENGTH_LONG).show();
@@ -238,7 +238,7 @@ public final class OcrCaptureActivity extends AppCompatActivity {
 
         if (grantResults.length != 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
             Log.d(TAG, "Camera permission granted - initialize the camera source");
-            // we have permission, so create the camerasource
+            // we have permission, so create the camera-source
             boolean autoFocus = getIntent().getBooleanExtra(AutoFocus,false);
             boolean useFlash = getIntent().getBooleanExtra(UseFlash, false);
             createCameraSource(autoFocus, useFlash);
@@ -255,7 +255,7 @@ public final class OcrCaptureActivity extends AppCompatActivity {
         };
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Multitracker sample")
+        builder.setTitle("Multi tracker sample")
                 .setMessage(R.string.no_camera_permission)
                 .setPositiveButton(R.string.ok, listener)
                 .show();
@@ -273,6 +273,7 @@ public final class OcrCaptureActivity extends AppCompatActivity {
         if (code != ConnectionResult.SUCCESS) {
             Dialog dlg =
                     GoogleApiAvailability.getInstance().getErrorDialog(this, code, RC_HANDLE_GMS);
+            assert dlg != null;
             dlg.show();
         }
 
@@ -303,7 +304,7 @@ public final class OcrCaptureActivity extends AppCompatActivity {
          * greater than 0.01.
          */
         @Override
-        public boolean onScale(ScaleGestureDetector detector) {
+        public boolean onScale(@NonNull ScaleGestureDetector detector) {
             return false;
         }
 
@@ -320,7 +321,7 @@ public final class OcrCaptureActivity extends AppCompatActivity {
          * rest of the gesture.
          */
         @Override
-        public boolean onScaleBegin(ScaleGestureDetector detector) {
+        public boolean onScaleBegin(@NonNull ScaleGestureDetector detector) {
             return true;
         }
 
@@ -336,7 +337,7 @@ public final class OcrCaptureActivity extends AppCompatActivity {
          *                 retrieve extended info about event state.
          */
         @Override
-        public void onScaleEnd(ScaleGestureDetector detector) {
+        public void onScaleEnd(@NonNull ScaleGestureDetector detector) {
             if (mCameraSource != null) {
                 mCameraSource.doZoom(detector.getScaleFactor());
             }
